@@ -9,6 +9,11 @@ const OrderForm = () => {
 		login: '',
 		text: '',
 	});
+	const initialFormData = {
+		tel: '',
+		login: '',
+		text: '',
+	};
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -18,7 +23,9 @@ const OrderForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		toast.success('Форма успешно отправлена! Мы свяжемся с вами в ближайшее время.');
-
+		setTimeout(() => {
+			setFormData(initialFormData);
+		}, 1500);
 	};
 
 	return (

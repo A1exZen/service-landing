@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
+import { motion } from 'framer-motion';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -34,28 +35,72 @@ const Login = () => {
 		}
 	};
 
+	const fadeInLeft = {
+		hidden: { opacity: 0, x: -50 },
+		visible: {
+			opacity: 1,
+			x: 0,
+			transition: { duration: 0.8, ease: 'easeInOut' },
+		},
+	};
+
+	const fadeInLogo = {
+		hidden: { opacity: 0, scale: 0.8 },
+		visible: {
+			opacity: 1,
+			scale: 1,
+			transition: { duration: 0.8, ease: 'easeOut' },
+		},
+	};
+
+	const fadeInError = {
+		hidden: { opacity: 0, y: 20 },
+		visible: {
+			opacity: 1,
+			y: 0,
+			transition: { duration: 0.5, ease: 'easeOut' },
+		},
+	};
+
 	return (
-		<div className="max-w-7xl mx-auto px-4 flex lg:flex-row my-20 lg:my-0 flex-col gap-20 items-center justify-center h-screen">
-			<div className='flex flex-col items-start gap-10'>
-				<Link to='/'>
-					<img alt='logo' src='/image%201.png' className='h-12 ' />
+		<motion.div
+			className="max-w-7xl mx-auto px-4 flex lg:flex-row my-20 lg:my-0 flex-col gap-20 items-center justify-center h-screen"
+			initial="hidden"
+			animate="visible"
+			variants={fadeInLeft}
+		>
+			{/* Текстовая часть */}
+			<motion.div className="flex flex-col items-start gap-10" variants={fadeInLeft}>
+				<Link to="/">
+					<motion.img
+						alt="logo"
+						src="/image%201.png"
+						className="h-12"
+						variants={fadeInLogo}
+					/>
 				</Link>
-				<h1 className='text-5xl font-bold '>ВХОД
-					В КАЛЬКУЛЯТОР</h1>
-				<p className='text-2xl font-semibold'>Автоматический расчет стоимости
-					сервисного обслуживания техники</p>
-				<p className='text-gray-600 text-lg'>Введите свои данные для входа в систему и получите
-					быстрый расчет стоимости ремонта, диагностики или
-					технического обслуживания вашей
-					техники</p>
-			</div>
+				<motion.h1 className="text-5xl font-bold" variants={fadeInLeft}>
+					ВХОД В КАЛЬКУЛЯТОР
+				</motion.h1>
+				<motion.p className="text-2xl font-semibold" variants={fadeInLeft}>
+					Автоматический расчет стоимости сервисного обслуживания техники
+				</motion.p>
+				<motion.p className="text-gray-600 text-lg" variants={fadeInLeft}>
+					Введите свои данные для входа в систему и получите быстрый расчет
+					стоимости ремонта, диагностики или технического обслуживания вашей
+					техники
+				</motion.p>
+			</motion.div>
 
-
+			{/* Форма */}
 			<form onSubmit={handleSubmit} className="w-full max-w-lg">
-				<div className="bg-black p-12 rounded-3xl transition-all duration-150 shadow-lg">
-					<div className="mb-4 text-white flex flex-col gap-2 ">
+				<div
+					className="bg-black p-12 rounded-3xl transition-all duration-150 shadow-lg"
+
+				>
+					<motion.div className="mb-4 text-white flex flex-col gap-2" variants={fadeInLeft}>
 						<label>E-mail:</label>
-						<input
+						<motion.input
 							type="text"
 							name="login"
 							value={formData.login}
@@ -63,12 +108,14 @@ const Login = () => {
 							placeholder="e-mail"
 							className="w-full p-3 rounded-lg bg-white text-gray-700"
 							required
+							whileFocus={{ scale: 1.02 }}
+							transition={{ duration: 0.2, ease: 'easeOut' }}
 						/>
-					</div>
+					</motion.div>
 
-					<div className="mb-12 text-white flex flex-col gap-2 ">
-						<label className="">Пароль:</label>
-						<input
+					<motion.div className="mb-12 text-white flex flex-col gap-2" variants={fadeInLeft}>
+						<label>Пароль:</label>
+						<motion.input
 							type="password"
 							name="password"
 							value={formData.password}
@@ -76,26 +123,45 @@ const Login = () => {
 							placeholder="******"
 							className="w-full p-3 rounded-lg bg-white text-gray-700"
 							required
+							whileFocus={{ scale: 1.02 }}
+							transition={{ duration: 0.2, ease: 'easeOut' }}
 						/>
-					</div>
-					<div className='w-full flex justify-center'>
-					<button
-						type="submit"
-						className=" px-15 text-lg rounded-xl bg-white font-bold py-3 uppercase  cursor-pointer mb-2"
-					>
-						Войти
-					</button>
-					</div>
-					<div className="w-full text-center">
-						<Link to="/register" className="text-sm uppercase underline text-center mt-2 text-gray-400 hover:text-gray-600">
+					</motion.div>
+
+					<motion.div className="w-full flex justify-center" variants={fadeInLeft}>
+						<motion.button
+							type="submit"
+							className="px-15 text-lg rounded-xl bg-white font-bold py-3 uppercase cursor-pointer mb-2"
+							whileHover={{ scale: 1.05 }}
+							whileTap={{ scale: 0.95 }}
+							transition={{ duration: 0.3, ease: 'easeOut' }} // Более плавная анимация для кнопки
+						>
+							Войти
+						</motion.button>
+					</motion.div>
+
+					<motion.div className="w-full text-center" variants={fadeInLeft}>
+						<Link
+							to="/register"
+							className="text-sm uppercase underline text-center mt-2 text-gray-400 hover:text-gray-600"
+						>
 							Зарегистрироваться
 						</Link>
-					</div>
+					</motion.div>
 				</div>
-				{error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
+				{error && (
+					<motion.p
+						className="text-red-500 text-center mb-4"
+						variants={fadeInError}
+						initial="hidden"
+						animate="visible"
+					>
+						{error}
+					</motion.p>
+				)}
 			</form>
-		</div>
+		</motion.div>
 	);
 };
 

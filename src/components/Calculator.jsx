@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {BadgeCheck} from "lucide-react";
@@ -7,7 +7,7 @@ import {Contacts} from "./Contacts.jsx";
 
 const Calculator = () => {
 	const navigate = useNavigate();
-
+	const resultSectionRef = useRef(null);
 	const [formData, setFormData] = useState({
 		brand: 'Karcher',
 		equipmentType: 'Газонокосилка',
@@ -67,6 +67,9 @@ const Calculator = () => {
 		e.preventDefault();
 		const calculatedCost = calculateCost();
 		setResult(calculatedCost);
+		if (resultSectionRef.current) {
+			resultSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+		}
 	};
 
 	const handleClear = () => {
@@ -82,12 +85,12 @@ const Calculator = () => {
 	return (
 		<div className='flex flex-col'>
 			<div
-				className="max-w-7xl mx-auto px-4 flex lg:flex-row my-20 flex-col gap-20 items-center justify-center">
+				className="max-w-7xl mx-auto px-4 flex lg:flex-row my-10 flex-col gap-20 items-center justify-center">
 				<form onSubmit={handleCalculate}
-				      className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+				      className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-12">
 
 					<div
-						className="col-span-1 lg:col-span-2 bg-black p-12 rounded-3xl transition-all duration-150 shadow-lg">
+						className="col-span-1 lg:col-span-2 bg-black p-12 rounded-3xl transition-all duration-150 shadow-lg ">
 						<h2 className='text-white uppercase font-bold mb-4'>ввод данных о
 							технике</h2>
 						<div className="mb-4 text-white flex flex-col gap-2 mx-4">
@@ -139,7 +142,7 @@ const Calculator = () => {
 						</div>
 						<h2 className='text-white uppercase font-bold mb-4'>Дополнительный
 							параметры</h2>
-						<div className="mb-12 text-white flex flex-col gap-2 mx-4">
+						<div className=" text-white flex flex-col gap-2 mx-4">
 							<label className='text-gray-300 uppercase'>Срок
 								выполнения:</label>
 							<div className="flex gap-6">
@@ -174,10 +177,10 @@ const Calculator = () => {
 
 					<div className="col-span-1 flex flex-col justify-between">
 						<div className='flex flex-col gap-6'>
-							<h1 className="text-5xl font-bold uppercase">
+							<h1 className="text-4xl font-bold uppercase">
 								КАЛЬКУЛЯТОР стоимости СЕРВИСНОГО ОБСЛУЖИВАНИЯ
 							</h1>
-							<p className="text-xl text-gray-600 font-medium">
+							<p className="text-lg text-gray-600 font-medium">
 								Выберите параметры обслуживания, укажите модель оборудования и
 								параметры работ, и получите расчет стоимости за несколько
 								секунд.
@@ -206,7 +209,7 @@ const Calculator = () => {
 
 
 			</div>
-			<section className="py-16 bg-black text-white">
+			<section ref={resultSectionRef} className="py-16 bg-black text-white">
 				<div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
 					<h2
 						className="text-5xl  font-bold uppercase text-center  mb-16">

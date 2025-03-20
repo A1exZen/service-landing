@@ -33,13 +33,13 @@ const Header = () => {
 
 	return (
 		<header
-			className={`container mx-auto text-white py-8 flex justify-between items-center  bg-white`}>
+			className={`container max-w-7xl mx-auto text-white py-8 flex justify-between items-center  bg-white`}>
 
 			<Link to='/'><img src='/image%201.png' alt='Logo'
-			                  className='w-45'/></Link>
+			                  className='w-35'/></Link>
 
 
-			<nav className='flex items-center gap-10 text-black font-medium  '>
+			<nav className='flex items-center gap-8 text-black font-medium  '>
 
 				<Link to='/' className='hover:underline  uppercase '>
 					Главная
@@ -72,7 +72,7 @@ const Header = () => {
 							      className="text-black font-medium px-8 py-2 rounded-full hover:bg-gray-400/40 border border-gray-700 uppercase flex items-center justify-center ">
 								Войти
 							</Link>
-							<Link to="/login"
+							<Link to="/register"
 							      className="text-white bg-black font-medium px-5 py-1 rounded-full hover:bg-gray-700 border border-gray-700 uppercase flex items-center justify-center ">
 								Зарегистрироваться
 							</Link>

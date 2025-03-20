@@ -39,7 +39,7 @@ const cardAnimation = {
 const MainSection = () => {
 	return (
 		<main className="mx-auto ">
-			<div className="container flex flex-col mx-auto">
+			<div className=" max-w-7xl flex flex-col mx-auto">
 				<section id="main" className="py-30 relative " style={{
 					backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0) 100%), url(${backgroundImage})`,
 					backgroundSize: '60% auto',
@@ -49,7 +49,7 @@ const MainSection = () => {
 					<div
 						className="relative z-10 flex flex-col items-start lg:max-w-[60%] ">
 						<motion.h1
-							className="text-2xl sm:text-6xl  font-bold mb-6 uppercase"
+							className="text-2xl sm:text-5xl  font-bold mb-6 uppercase"
 							variants={fadeInUp}
 							initial="hidden"
 							animate="visible"
@@ -94,7 +94,7 @@ const MainSection = () => {
 				}}>
 					<div className="relative z-10 flex  flex-col lg:max-w-[45%]">
 						<motion.h1
-							className="text-2xl  sm:text-6xl  font-bold mb-6 uppercase"
+							className="text-2xl  sm:text-5xl  font-bold mb-6 uppercase"
 							variants={fadeInUp}
 							initial="hidden"
 							animate="visible"
@@ -143,7 +143,7 @@ const MainSection = () => {
 
 			</div>
 			<section id='service' className="py-16 bg-black text-white">
-				<div className="container mx-auto px-4 sm:px-6 lg:px-8">
+				<div className="max-w-7xl  mx-auto px-4 sm:px-6 lg:px-8">
 					<h2
 						className="text-3xl sm:text-4xl lg:text-5xl font-bold uppercase  mb-16">
 						Наши услуги
@@ -153,7 +153,7 @@ const MainSection = () => {
 
 						<div className="flex flex-col items-center text-center">
 							<BadgeCheck className='mb-6' size={100}/>
-							<h3 className="text-xl sm:text-2xl font-bold uppercase mb-4">
+							<h3 className="text-lg sm:text-xl font-bold uppercase mb-4">
 								Гарантийный ремонт
 							</h3>
 							<p className="text-gray-400 text-base sm:text-lg">
@@ -165,7 +165,7 @@ const MainSection = () => {
 
 						<div className="flex flex-col items-center text-center">
 							<BadgeCheck className='mb-6' size={100}/>
-							<h3 className="text-xl sm:text-2xl font-bold uppercase mb-4">
+							<h3 className="text-lg sm:text-xl font-bold uppercase mb-4">
 								ПОСЛЕГАРАНТИЙНЫЙ РЕМОНТ
 							</h3>
 							<p className="text-gray-400 text-base sm:text-lg">
@@ -178,7 +178,7 @@ const MainSection = () => {
 
 						<div className="flex flex-col items-center text-center">
 							<BadgeCheck className='mb-6' size={100}/>
-							<h3 className="text-xl sm:text-2xl font-bold uppercase mb-4">
+							<h3 className="text-lg sm:text-xl font-bold uppercase mb-4">
 								ДИАГНОСТИКА
 							</h3>
 							<p className="text-gray-400 text-base sm:text-lg">
